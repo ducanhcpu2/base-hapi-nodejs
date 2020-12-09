@@ -1,0 +1,22 @@
+{
+  "name": "hapi_pro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ducanhcpu2/base-hapi-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ducanhcpu2/base-hapi-nodejs/issues"
+  },
+  "homepage": "https://github.com/ducanhcpu2/base-hapi-nodejs#readme",
+  "dependencies": {
+    "@hapi/hapi": "^20.0.3"
+  }
+}
