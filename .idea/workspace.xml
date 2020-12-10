@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f380636-2981-4997-b829-f97367758738" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/CommonBase/Config/mysqlConfig.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/CommonBase/DBConnection/MysqlConnection.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Handlers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Routes/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +67,7 @@
       <workItem from="1607412389674" duration="6364000" />
       <workItem from="1607507041620" duration="254000" />
       <workItem from="1607508611739" duration="1495000" />
-      <workItem from="1607575040056" duration="4588000" />
+      <workItem from="1607575040056" duration="4965000" />
     </task>
     <servers />
   </component>
@@ -86,10 +80,10 @@
     </state>
     <state x="0" y="25" width="1280" height="714" key="SettingsEditor/0.25.1280.714@0.25.1280.714" timestamp="1606928857936" />
     <state x="229" y="68" key="SettingsEditor/0.25.1440.814@0.25.1440.814" timestamp="1606901334950" />
-    <state width="500" height="449" key="SwitcherDM" timestamp="1607582775888">
+    <state width="500" height="449" key="SwitcherDM" timestamp="1607583445001">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="500" height="449" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1607582775888" />
+    <state width="500" height="449" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1607583445001" />
     <state width="500" height="400" key="SwitcherDM/0.25.1280.714@0.25.1280.714" timestamp="1607530163561" />
     <state width="500" height="445" key="SwitcherDM/0.25.1440.814@0.25.1440.814" timestamp="1606920889242" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1607012695310">
