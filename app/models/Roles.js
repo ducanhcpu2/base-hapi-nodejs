@@ -2,6 +2,7 @@ const {
   DataTypes
 } = require('sequelize');
 
+//const {sequelize}= require('../CommonBase/DBConnection/MysqlConnection')
 module.exports = sequelize => {
   const attributes = {
     id: {
@@ -49,12 +50,14 @@ module.exports = sequelize => {
       comment: null,
       field: "codeRole"
     }
-  };
+  }
   const options = {
     tableName: "Roles",
     comment: "",
     indexes: []
   };
-  const RolesModel = sequelize.define("Roles_model", attributes, options);
+  RolesModel =  sequelize.define("Roles_model", attributes, options);
+  console.log("RolesModel = ",RolesModel)
   return RolesModel;
 };
+
