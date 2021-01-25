@@ -2,8 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f380636-2981-4997-b829-f97367758738" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scriptDB.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/reportDetail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/reports.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/roleDetail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/roles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/subRoles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/importance library " afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/CommonBase/Config/mysqlConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/Config/mysqlConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Handlers/GetUsersHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Handlers/GetUsersHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Handlers/RolesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Handlers/RolesHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/MyGuests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Users.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,11 +56,12 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="ts.external.directory.path" value="$APPLICATION_PLUGINS_DIR$/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/models" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/CommonBase" />
     </key>
@@ -70,35 +88,11 @@
       <workItem from="1607747553877" duration="12510000" />
       <workItem from="1608014393365" duration="41000" />
       <workItem from="1611304647428" duration="1032000" />
+      <workItem from="1611557212524" duration="7300000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="378" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607751968278">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="378" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.800@0.0.1280.800" timestamp="1607751968278" />
-    <state x="0" y="25" width="1280" height="714" key="SettingsEditor" timestamp="1606928857936">
-      <screen x="0" y="25" width="1280" height="714" />
-    </state>
-    <state x="0" y="25" width="1280" height="714" key="SettingsEditor/0.25.1280.714@0.25.1280.714" timestamp="1606928857936" />
-    <state x="229" y="68" key="SettingsEditor/0.25.1440.814@0.25.1440.814" timestamp="1606901334950" />
-    <state width="500" height="449" key="SwitcherDM" timestamp="1607850224300">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="500" height="449" key="SwitcherDM/0.0.1280.800@0.0.1280.800" timestamp="1607850224300" />
-    <state width="500" height="400" key="SwitcherDM/0.25.1280.714@0.25.1280.714" timestamp="1607530163561" />
-    <state width="500" height="445" key="SwitcherDM/0.25.1440.814@0.25.1440.814" timestamp="1606920889242" />
-    <state x="342" y="139" width="595" height="522" key="find.popup" timestamp="1607588161505">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="342" y="139" width="595" height="522" key="find.popup/0.0.1280.800@0.0.1280.800" timestamp="1607588161505" />
-    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1607012695310">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="305" y="124" width="670" height="676" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1607012695310" />
   </component>
 </project>

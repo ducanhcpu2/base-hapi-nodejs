@@ -1,8 +1,8 @@
 module.exports = {
     dbOptions: {
-        database: "nodejs_db",
-        username: "root",
-        password: "1234567890",
+        database: "QLNV",
+        username: "anhnd9",
+        password: "Vtp@ctbc123",
         dialect: "mysql",
         host: "localhost",
         port: 3306,

@@ -1,5 +1,5 @@
 
-const RolesModel = require('../models/Roles')
+const RolesModel = require('../models/roles')
 const {sequelize} = require('../CommonBase/DBConnection/MysqlConnection')
 const {response} = require('../CommonBase/RestApi/response')
 getRoles = async function(request,h)
@@ -7,10 +7,9 @@ getRoles = async function(request,h)
     // const roles = await RolesModel(sequelize).findAll();
     // console.log(roles.every(roles => roles instanceof RolesModel(sequelize))); // true
     // console.log("All users:", JSON.stringify(roles, null, 2));
-    //
     // return h.response(JSON.stringify(roles, null, 2));
     const res = await sequelize
-        .query('CALL GET_LIST_USERS()')
+        .query('CALL getRoleById(:id)',{replacements:{id:request.payload.id}})
         .then(v=>{
             console.log(v)
             return v

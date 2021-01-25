@@ -1,7 +1,7 @@
 const {UsersHandler,RolesHandler} = require('../Handlers')
 const {sequelize} =require('../CommonBase/DBConnection/MysqlConnection')
 const Joi = require('joi')
-const RolesModel = require('../models/Roles')
+const RolesModel = require('../models/roles')
 const {getUserRes} = require('../models/ResponseModel/getUserRes')
 // const getUserRes = Joi.object({
 //     id: Joi.number().required(),
