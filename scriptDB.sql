@@ -1,4 +1,4 @@
-CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] nodejs_db;
+CREATE DATABASE [IF NOT EXISTS] nodejs_db;
 
 
 USE nodejs_db;
