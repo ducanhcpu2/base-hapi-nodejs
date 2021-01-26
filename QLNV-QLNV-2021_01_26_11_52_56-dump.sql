@@ -90,13 +90,15 @@ CREATE TABLE `roleDetail` (
   `idRole` int NOT NULL,
   `idSubRole` int NOT NULL,
   `RoleCode` varchar(15) DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `roleDetail_id_uindex` (`id`),
   KEY `roleDetail_roles_id_fk` (`idRole`),
   KEY `roleDetail_subRoles_id_fk` (`idSubRole`),
   CONSTRAINT `roleDetail_roles_id_fk` FOREIGN KEY (`idRole`) REFERENCES `roles` (`id`),
   CONSTRAINT `roleDetail_subRoles_id_fk` FOREIGN KEY (`idSubRole`) REFERENCES `subRoles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +107,7 @@ CREATE TABLE `roleDetail` (
 
 LOCK TABLES `roleDetail` WRITE;
 /*!40000 ALTER TABLE `roleDetail` DISABLE KEYS */;
-INSERT INTO `roleDetail` VALUES (1,'Xem user',1,2,'VIEW_USER'),(2,'Thêm user',1,1,'ADD_USER'),(3,'Sửa user',2,3,'EDIT_USER');
+INSERT INTO `roleDetail` VALUES (1,'Xem user',1,2,'VIEW_USER',NULL,NULL),(2,'Thêm user',1,1,'ADD_USER',NULL,NULL),(3,'Sửa user',2,3,'EDIT_USER',NULL,NULL);
 /*!40000 ALTER TABLE `roleDetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,11 +121,8 @@ DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
   `roleName` varchar(50) DEFAULT NULL,
-  `idUser` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `roles_id_uindex` (`id`),
-  KEY `roles_users_id_fk` (`idUser`),
-  CONSTRAINT `roles_users_id_fk` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`)
+  UNIQUE KEY `roles_id_uindex` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -133,7 +132,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Admin',1),(2,'Employees',2),(3,'Employees',3),(4,'Employees',4);
+INSERT INTO `roles` VALUES (1,'Admin'),(2,'Employees master'),(3,'Employees level 1'),(4,'Employees level 2');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,9 +178,12 @@ CREATE TABLE `users` (
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `createdAt` timestamp NULL DEFAULT NULL,
   `updatedAt` timestamp NULL DEFAULT NULL,
+  `idRole` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `users_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `users_id_uindex` (`id`),
+  KEY `users_roles_id_fk` (`idRole`),
+  CONSTRAINT `users_roles_id_fk` FOREIGN KEY (`idRole`) REFERENCES `roles` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +192,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Nguyen Duc Anh','anhnd151@viettelpost.com.vn','0984819160',1,'',NULL,NULL),(2,'Nguyen Duc Hau','haund1@viettelpost.com.vn','0912313218',1,'',NULL,NULL),(3,'Nguyen Quang Vinh','vinhnq123@viettelpost.com.vn','0912312312',1,'',NULL,NULL),(4,'Pham Kim Anh','anhkm22@viettelpost.com.vn','0912381239',0,'',NULL,NULL);
+INSERT INTO `users` VALUES (1,'Nguyen Duc Anh','anhnd151@viettelpost.com.vn','0984819160',1,'',NULL,NULL,1),(2,'Nguyen Duc Hau','haund1@viettelpost.com.vn','0912313218',1,'',NULL,NULL,2),(3,'Nguyen Quang Vinh','vinhnq123@viettelpost.com.vn','0912312312',1,'',NULL,NULL,3),(4,'Pham Kim Anh','anhkm22@viettelpost.com.vn','0912381239',0,'',NULL,NULL,3),(5,'Dinh Thi Phuong','phuongdt123@viettelpost.com.vn','0915320728',0,'','2021-01-26 02:09:15','2021-01-26 02:09:15',4);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -203,4 +205,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-25 16:57:23
+-- Dump completed on 2021-01-26 11:52:56

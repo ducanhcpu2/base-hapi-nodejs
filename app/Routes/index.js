@@ -61,6 +61,31 @@ module.exports = function(server) {
         },
 
     });
+
+    server.route({
+        method: 'POST',
+        path: '/creat_roles',
+        options:{
+            handler: async function (request, h) {
+                const res = await RolesHandler.createRoles(request,h)
+                return res;
+            },
+            description: 'Get todo',
+            notes: 'Returns a todo item by the id passed in the path',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                payload :Joi.object({
+                    data:Joi.array()
+                }).label('Sum')
+            },
+            // response: {
+            //     schema: Joi.array().items(getUserRes),
+            //     failAction: 'log'
+            // }
+
+        },
+
+    });
 }
 
 
