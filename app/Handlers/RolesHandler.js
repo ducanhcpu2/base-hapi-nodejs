@@ -1,6 +1,7 @@
 
 const RolesModel = require('../models/roles')
 const RoleDetailModel = require('../models/roleDetail')
+const SubRoles = require('../models/subRoles')
 const {sequelize} = require('../CommonBase/DBConnection/MysqlConnection')
 const {response} = require('../CommonBase/RestApi/response')
 getRoles = async function(request,h)
@@ -27,49 +28,18 @@ getRoles = async function(request,h)
 
 createRoles = async function(request,h)
 {
-
-
-
-    // viet thu tuc tao role va lay ra idSubRole , idRole
-    // {
-    //     data:[
-    //         {
-    //             roleName: "abc",
-    //             idSubRoles:1,
-    //             RoleCode:"DELETE_USER",
-    //             subRoleName:"xoa user"
-    //         },
-    //         {
-    //             roleName: "abc",
-    //             idSubRoles:1,
-    //             RoleCode:"DELETE_USER",
-    //             subRoleName:"xoa user"
-    //         },
-    //         {
-    //             roleName: "abc",
-    //             idSubRoles:1,
-    //             RoleCode:"DELETE_USER",
-    //             subRoleName:"xoa user"
-    //         }
-    //     ]
-    // }
-
-
     let recieveData = request.payload.data;
+    let resCreateRole = await RolesModel(sequelize).create({roleName: recieveData[0].roleName,createdAt:"",updatedAt:""}, { individualHooks: true })
+    const idRole = resCreateRole.id;
+    let parseReciveData = recieveData;
 
-    let resCreateRole = await RolesModel(sequelize).create({roleName: recieveData[0].RoleCode},{ individualHooks: true })
-    const parseObj = JSON.parse(resCreateRole);
-    const idRole = parseObj.id;
+    parseReciveData.forEach(function (value) {
+        Object.assign(value,{idRole: idRole})
+        console.log("value = ",value)
 
-    let parseReciveData = JSON.parse(recieveData);
-    parseReciveData.push({idRole: idRole})
-
-    //let data= [{subRoleName:"Xóa user",idRole:idRole,idSubRole:2,RoleCode:"DELETE_USER",subRoleName: sub_role_name}, {subRoleName:"Xóa báo cáo",idRole:idRole,idSubRole:2,RoleCode:"DELETE_REPORT",subRoleName: sub_role_name,RoleCode: Role_Code}];
-
+    })
     // insert nhieu ban ghi vao role detail
-
     let result = await RoleDetailModel(sequelize).bulkCreate(parseReciveData, { individualHooks: true }).then(() => {
-        console.log('data created');
         return "OK";
     }).catch((err) => {
         console.log('failed to create data');
@@ -93,8 +63,39 @@ createRoles = async function(request,h)
     return JSON.stringify(resData);
 }
 
+createSubRole = async function(request,h) {
 
-module.exports = {
+    // request.payload.data.forEach(function (value) {
+    //     Object.assign(value,{createdAt: "",updatedAt: ""})
+    //     console.log("value = ",value)
+    //
+    // })
+    let result = await SubRoles(sequelize).bulkCreate(request.payload.data, { individualHooks: true }).then(() => {
+        return "OK";
+    }).catch((err) => {
+        console.log('failed to create data');
+        console.log(err);
+        return err.toString();
+    });
+    let resData = {
+        error: 200,
+        data: result,
+        messages: response(200)
+    }
+    if (result==="OK")
+    {
+        return JSON.stringify(resData);
+    }
+    resData = {
+        error: 500,
+        data: result,
+        messages: response(500)
+    }
+    return JSON.stringify(resData);
+}
+
+exports.RolesHandler = {
     getRoles,
-    createRoles
+    createRoles,
+    createSubRole
 }

@@ -32,6 +32,8 @@ CREATE TABLE `reportDetail` (
   `note` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `idReport` int NOT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `reportDetail_id_uindex` (`id`),
   KEY `reportDetail_reports_id_fk` (`idReport`),
@@ -45,7 +47,7 @@ CREATE TABLE `reportDetail` (
 
 LOCK TABLES `reportDetail` WRITE;
 /*!40000 ALTER TABLE `reportDetail` DISABLE KEYS */;
-INSERT INTO `reportDetail` VALUES (1,'Bác sỹ trưởng khoa răng hàm mặt hôm nay không đi làm','2011-11-10 17:00:00','Bạch Mai','BS Hùng',NULL,'Hẹn hôm sau gặp lại',NULL,1);
+INSERT INTO `reportDetail` VALUES (1,'Bác sỹ trưởng khoa răng hàm mặt hôm nay không đi làm','2011-11-10 17:00:00','Bạch Mai','BS Hùng',NULL,'Hẹn hôm sau gặp lại',NULL,1,NULL,NULL);
 /*!40000 ALTER TABLE `reportDetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +100,7 @@ CREATE TABLE `roleDetail` (
   KEY `roleDetail_subRoles_id_fk` (`idSubRole`),
   CONSTRAINT `roleDetail_roles_id_fk` FOREIGN KEY (`idRole`) REFERENCES `roles` (`id`),
   CONSTRAINT `roleDetail_subRoles_id_fk` FOREIGN KEY (`idSubRole`) REFERENCES `subRoles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +109,7 @@ CREATE TABLE `roleDetail` (
 
 LOCK TABLES `roleDetail` WRITE;
 /*!40000 ALTER TABLE `roleDetail` DISABLE KEYS */;
-INSERT INTO `roleDetail` VALUES (1,'Xem user',1,2,'VIEW_USER',NULL,NULL),(2,'Thêm user',1,1,'ADD_USER',NULL,NULL),(3,'Sửa user',2,3,'EDIT_USER',NULL,NULL);
+INSERT INTO `roleDetail` VALUES (1,'Xem user',1,2,'VIEW_USER',NULL,NULL),(2,'Thêm user',1,1,'ADD_USER',NULL,NULL),(3,'Sửa user',2,3,'EDIT_USER',NULL,NULL),(43,'Xóa user',13,4,'DELETE_USER','2021-01-27 07:27:03','2021-01-27 07:27:03'),(44,'Sửa user',13,3,'EDIT_USER','2021-01-27 07:27:03','2021-01-27 07:27:03');
 /*!40000 ALTER TABLE `roleDetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,9 +123,11 @@ DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
   `roleName` varchar(50) DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `roles_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +136,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'Admin'),(2,'Employees master'),(3,'Employees level 1'),(4,'Employees level 2');
+INSERT INTO `roles` VALUES (1,'Admin',NULL,NULL),(2,'Employees master',NULL,NULL),(3,'Employees level 1',NULL,NULL),(4,'Employees level 2',NULL,NULL),(13,'Nhân viên kinh doanh','2021-01-27 07:27:03','2021-01-27 07:27:03');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +153,7 @@ CREATE TABLE `subRoles` (
   `RoleCode` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `subRoles_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +162,7 @@ CREATE TABLE `subRoles` (
 
 LOCK TABLES `subRoles` WRITE;
 /*!40000 ALTER TABLE `subRoles` DISABLE KEYS */;
-INSERT INTO `subRoles` VALUES (1,'Thêm user','ADD_USER'),(2,'Xem user','VIEW_USER'),(3,'Sửa user','EDIT_USER'),(4,'Xóa user','DELETE_USER');
+INSERT INTO `subRoles` VALUES (1,'Thêm user','ADD_USER'),(2,'Xem user','VIEW_USER'),(3,'Sửa user','EDIT_USER'),(4,'Xóa user','DELETE_USER'),(5,'Thêm báo cáo','ADD_REPORT'),(6,'Sửa báo cáo','EDIT_REPORT');
 /*!40000 ALTER TABLE `subRoles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,4 +209,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-26 11:52:56
+-- Dump completed on 2021-01-27 16:22:08

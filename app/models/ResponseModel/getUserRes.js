@@ -10,4 +10,6 @@ const getUserRes = Joi.object({
 })
 
 
-module.exports = {getUserRes}
+module.exports = {
+    getUserRes
+}

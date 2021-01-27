@@ -76,12 +76,30 @@ module.exports = sequelize => {
       autoIncrement: false,
       comment: null,
       field: "updatedAt"
+    },
+    idRole: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "idRole",
+      references: {
+        key: "id",
+        model: "roles_model"
+      }
     }
   };
   const options = {
     tableName: "users",
     comment: "",
-    indexes: []
+    indexes: [{
+      name: "users_roles_id_fk",
+      unique: false,
+      type: "BTREE",
+      fields: ["idRole"]
+    }]
   };
   const UsersModel = sequelize.define("users_model", attributes, options);
   return UsersModel;

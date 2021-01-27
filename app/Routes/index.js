@@ -1,15 +1,9 @@
-const {UsersHandler,RolesHandler} = require('../Handlers')
-const {sequelize} =require('../CommonBase/DBConnection/MysqlConnection')
+const {common} = require('../models/ResponseModel/common')
 const Joi = require('joi')
-const RolesModel = require('../models/roles')
+const {RolesHandler} = require("../Handlers/RolesHandler");
+const {UsersHandler} = require("../Handlers/GetUsersHandler");
+const {ReportsHandler} = require("../Handlers/ReportsHandler");
 const {getUserRes} = require('../models/ResponseModel/getUserRes')
-// const getUserRes = Joi.object({
-//     id: Joi.number().required(),
-//     firstname:Joi.string().required(),
-//     lastname:Joi.string().required(),
-//     // createdAt:"",
-//     // updatedAt:""
-// })
 
 module.exports = function(server) {
     server.route({
@@ -75,14 +69,94 @@ module.exports = function(server) {
             tags: ['api'], // ADD THIS TAG
             validate: {
                 payload :Joi.object({
-                    data:Joi.array()
-                }).label('Sum')
+                    data:Joi.array().items(
+                        {
+                            roleName: Joi.string().required(),
+                            idSubRole: Joi.number().required(),
+                            RoleCode: Joi.string().required(),
+                            subRoleName: Joi.string().required()
+                        }
+                    )
+                })
             },
-            // response: {
-            //     schema: Joi.array().items(getUserRes),
-            //     failAction: 'log'
-            // }
+            response: {
+                schema: common.responseCreateRoles,
+                failAction: 'log'
+            }
+        },
 
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/create_sub_roles',
+        options:{
+            handler: async function (request, h) {
+                const res = await RolesHandler.createSubRole(request,h)
+                return res;
+            },
+            description: 'Get todo',
+            notes: 'Returns a todo item by the id passed in the path',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                payload :Joi.object({
+                    data:Joi.array().items(
+                        {
+                            subRoleName: Joi.string().required(),
+                            RoleCode: Joi.string().required(),
+                        }
+                    )
+                })
+            },
+            response: {
+                schema: common.responseCreateRoles,
+                failAction: 'log'
+            }
+        },
+
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/getting_all_reports',
+        options:{
+            handler: async function (request, h) {
+                const res = await ReportsHandler.gettingAllReports(request,h)
+                return res;
+            },
+            description: 'Get todo',
+            notes: 'Returns a todo item by the id passed in the path',
+            tags: ['api'], // ADD THIS TAG
+            response: {
+                schema: common.responseAllReports,
+                failAction: 'log'
+            }
+        },
+
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/getting_detail_reports/{idReport}',
+        options:{
+            handler: async function (request, h) {
+                const res = await ReportsHandler.gettingDetailReport(request,h)
+                return res;
+            },
+            description: 'Get todo',
+            notes: 'Returns a todo item by the id passed in the path',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                params: Joi.object({
+                    idReport : Joi.number()
+                        .required()
+                        .description('the id for the todo item'),
+                })
+            },
+            response: {
+                schema: common.reponseDetailReport,
+                failAction: 'log'
+            }
         },
 
     });

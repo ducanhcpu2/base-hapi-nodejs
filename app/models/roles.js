@@ -23,29 +23,29 @@ module.exports = sequelize => {
       comment: null,
       field: "roleName"
     },
-    idUser: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
-      field: "idUser",
-      references: {
-        key: "id",
-        model: "users_model"
-      }
+      field: "createdAt"
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "updatedAt"
     }
   };
   const options = {
     tableName: "roles",
     comment: "",
-    indexes: [{
-      name: "roles_users_id_fk",
-      unique: false,
-      type: "BTREE",
-      fields: ["idUser"]
-    }]
+    indexes: []
   };
   const RolesModel = sequelize.define("roles_model", attributes, options);
   return RolesModel;

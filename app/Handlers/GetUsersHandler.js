@@ -11,4 +11,4 @@ GetUsers = async function(request,h){
 
     return JSON.stringify(users, null, 2);
 }
-module.exports = {GetUsers};
+exports.UsersHandler = {GetUsers};
