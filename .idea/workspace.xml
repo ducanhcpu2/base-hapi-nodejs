@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f380636-2981-4997-b829-f97367758738" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Handlers/ReportsHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/ResponseModel/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QLNV-QLNV-2021_01_26_11_52_56-dump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/QLNV-27-1-QLNV-2021_01_27_14_21_44-dump.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Handlers/GetUsersHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Handlers/GetUsersHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Handlers/RolesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Handlers/RolesHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Handlers/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ResponseModel/getUserRes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ResponseModel/getUserRes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/roleDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/roleDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/roles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/subRoles.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/subRoles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +75,7 @@
       <workItem from="1608014393365" duration="41000" />
       <workItem from="1611304647428" duration="1032000" />
       <workItem from="1611557212524" duration="21411000" />
-      <workItem from="1611731158326" duration="7177000" />
+      <workItem from="1611731158326" duration="7456000" />
     </task>
     <servers />
   </component>
