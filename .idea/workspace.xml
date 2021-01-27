@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f380636-2981-4997-b829-f97367758738" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/gen-procedure-stored.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QLNV-27-1-QLNV-2021_01_27_16_22_08-dump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/QLNV-27-1-QLNV-2021_01_27_16_38_16-dump.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +76,7 @@
       <workItem from="1608014393365" duration="41000" />
       <workItem from="1611304647428" duration="1032000" />
       <workItem from="1611557212524" duration="21411000" />
-      <workItem from="1611731158326" duration="7456000" />
+      <workItem from="1611731158326" duration="8978000" />
     </task>
     <servers />
   </component>
