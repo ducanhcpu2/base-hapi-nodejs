@@ -1,7 +1,7 @@
 const {common} = require('../models/ResponseModel/common')
 const Joi = require('joi')
 const {RolesHandler} = require("../Handlers/RolesHandler");
-const {UsersHandler} = require("../Handlers/GetUsersHandler");
+const {UsersHandler} = require("../Handlers/UsersHandler");
 const {ReportsHandler} = require("../Handlers/ReportsHandler");
 const {getUserRes} = require('../models/ResponseModel/getUserRes')
 
@@ -25,7 +25,6 @@ module.exports = function(server) {
                 })
             }
         },
-
     });
 
     server.route({
@@ -49,6 +48,38 @@ module.exports = function(server) {
             },
             response: {
                 schema: Joi.array().items(getUserRes),
+                failAction: 'log'
+            }
+
+        },
+
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/register_user',
+        options:{
+            handler: async function (request, h) {
+                const res = await UsersHandler.registerUser(request,h)
+                return res;
+            },
+            description: 'Get todo',
+            notes: 'Returns a todo item by the id passed in the path',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                payload :Joi.object({
+                    email : Joi.string()
+                        .required()
+                        .description('email for login'),
+                    fullName:Joi.string().required(),
+                    phoneNumber: Joi.string().required(),
+                    gender: Joi.number().required(),
+                    password:Joi.string().required(),
+                    idRole: Joi.number().required()
+                })
+            },
+            response: {
+                schema: common.responseCreateObj,
                 failAction: 'log'
             }
 
