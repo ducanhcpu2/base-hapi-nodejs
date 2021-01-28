@@ -39,8 +39,16 @@ const reponseDetailReport = Joi.object({
     messages: Joi.string()
 })
 
+const responseCreateObj = Joi.object({
+    error: Joi.number(),
+    data: Joi.string(),
+    messages:Joi.string()
+})
+
+
 exports.common = {
     responseCreateRoles,
     responseAllReports,
-    reponseDetailReport
+    reponseDetailReport,
+    responseCreateObj
 }
