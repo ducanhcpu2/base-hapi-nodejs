@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f380636-2981-4997-b829-f97367758738" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Handlers/ReportsHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Handlers/ReportsHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Handlers/RolesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Handlers/RolesHandler.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +39,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$APPLICATION_PLUGINS_DIR$/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -74,11 +76,17 @@
       <workItem from="1608014393365" duration="41000" />
       <workItem from="1611304647428" duration="1032000" />
       <workItem from="1611557212524" duration="21411000" />
-      <workItem from="1611731158326" duration="20760000" />
+      <workItem from="1611731158326" duration="20919000" />
+      <workItem from="1611816134511" duration="591000" />
+      <workItem from="1611816732205" duration="3868000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

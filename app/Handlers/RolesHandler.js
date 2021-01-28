@@ -23,7 +23,7 @@ getRoles = async function(request,h)
         data: res,
         messages: response(200)
     }
-    return JSON.stringify(resData);
+    return (resData);
 }
 
 createRoles = async function(request,h)
@@ -53,14 +53,14 @@ createRoles = async function(request,h)
     }
     if (result==="OK")
     {
-        return JSON.stringify(resData);
+        return (resData);
     }
     resData = {
         error: 500,
         data: result,
         messages: response(500)
     }
-    return JSON.stringify(resData);
+    return (resData);
 }
 
 createSubRole = async function(request,h) {
@@ -84,14 +84,14 @@ createSubRole = async function(request,h) {
     }
     if (result==="OK")
     {
-        return JSON.stringify(resData);
+        return (resData);
     }
     resData = {
         error: 500,
         data: result,
         messages: response(500)
     }
-    return JSON.stringify(resData);
+    return (resData);
 }
 
 exports.RolesHandler = {

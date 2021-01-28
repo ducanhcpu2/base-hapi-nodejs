@@ -19,7 +19,7 @@ gettingAllReports = async function(request,h){
         data: res,
         messages: response(200)
     }
-    return JSON.stringify(resData);
+    return resData;
 }
 gettingReportById = async function(request,h) {
     const result = await ReportsModel(sequelize).findAll({where:{"idUser":request.params.idUser}}).then(v=>{
@@ -30,7 +30,7 @@ gettingReportById = async function(request,h) {
             messages: response(200)
         }
 
-        return JSON.stringify(resData);
+        return (resData);
 
     }).catch(err => {
         let resData = {
@@ -38,7 +38,7 @@ gettingReportById = async function(request,h) {
             data: err,
             messages: response(500)
         }
-        return JSON.stringify(resData);
+        return (resData);
     });
     return result;
 }
@@ -57,7 +57,7 @@ gettingDetailReport = async function(request,h) {
         data: res,
         messages: response(200)
     }
-    return JSON.stringify(resData);
+    return (resData);
 }
 createReport = async function(request,h){
     let result = await ReportsModel(sequelize).create(request.payload, { individualHooks: true }).then(() => {
@@ -74,14 +74,14 @@ createReport = async function(request,h){
     }
     if (result==="OK")
     {
-        return JSON.stringify(resData);
+        return (resData);
     }
     resData = {
         error: 500,
         data: result,
         messages: response(500)
     }
-    return JSON.stringify(resData);
+    return (resData);
 }
 createDetailReport = async function(request,h) {
     let result = await ReportDetail(sequelize).create(request.payload, { individualHooks: true }).then(() => {
@@ -98,14 +98,14 @@ createDetailReport = async function(request,h) {
     }
     if (result==="OK")
     {
-        return JSON.stringify(resData);
+        return (resData);
     }
     resData = {
         error: 500,
         data: result,
         messages: response(500)
     }
-    return JSON.stringify(resData);
+    return (resData);
 }
 
 updateReport = async function(request,h) {
@@ -124,15 +124,17 @@ updateReport = async function(request,h) {
     }
     if (result==="OK")
     {
-        return JSON.stringify(resData);
+        return (resData);
     }
     resData = {
         error: 500,
         data: result,
         messages: response(500)
     }
-    return JSON.stringify(resData);
+    return (resData);
 }
+
+
 exports.ReportsHandler = {
     gettingAllReports,
     gettingDetailReport,
