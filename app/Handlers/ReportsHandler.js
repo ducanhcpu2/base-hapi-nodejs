@@ -4,6 +4,17 @@ const {sequelize} = require('../CommonBase/DBConnection/MysqlConnection')
 const {response} = require('../CommonBase/RestApi/response')
 
 gettingAllReports = async function(request,h){
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
+
     let pageOffset = request.query.pageOffset;
     let pageSize = request.query.pageSize;
 
@@ -22,6 +33,16 @@ gettingAllReports = async function(request,h){
     return resData;
 }
 gettingReportById = async function(request,h) {
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
     const result = await ReportsModel(sequelize).findAll({where:{"idUser":request.params.idUser}}).then(v=>{
 
         let resData = {
@@ -43,6 +64,16 @@ gettingReportById = async function(request,h) {
     return result;
 }
 gettingDetailReport = async function(request,h) {
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
     let pageOffset = request.query.pageOffset;
     let pageSize = request.query.pageSize;
     const res = await sequelize
@@ -60,6 +91,16 @@ gettingDetailReport = async function(request,h) {
     return (resData);
 }
 createReport = async function(request,h){
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
     let result = await ReportsModel(sequelize).create(request.payload, { individualHooks: true }).then(() => {
         return "OK";
     }).catch((err) => {
@@ -84,6 +125,16 @@ createReport = async function(request,h){
     return (resData);
 }
 createDetailReport = async function(request,h) {
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
     let result = await ReportDetail(sequelize).create(request.payload, { individualHooks: true }).then(() => {
         return "OK";
     }).catch((err) => {
@@ -109,6 +160,16 @@ createDetailReport = async function(request,h) {
 }
 
 updateReport = async function(request,h) {
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
     let idReport = request.payload.idReport;
     let result = await ReportsModel(sequelize).update(request.payload, { individualHooks: true ,where: { id: idReport }},).then(() => {
         return "OK";

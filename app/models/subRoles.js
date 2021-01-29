@@ -36,8 +36,7 @@ module.exports = sequelize => {
   const options = {
     tableName: "subRoles",
     comment: "",
-    indexes: [],
-    timestamps:false
+    indexes: []
   };
   const SubRolesModel = sequelize.define("subRoles_model", attributes, options);
   return SubRolesModel;

@@ -6,6 +6,16 @@ const {sequelize} = require('../CommonBase/DBConnection/MysqlConnection')
 const {response} = require('../CommonBase/RestApi/response')
 getRoles = async function(request,h)
 {
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
     // const roles = await RolesModel(sequelize).findAll();
     // console.log(roles.every(roles => roles instanceof RolesModel(sequelize))); // true
     // console.log("All users:", JSON.stringify(roles, null, 2));
@@ -28,6 +38,16 @@ getRoles = async function(request,h)
 
 createRoles = async function(request,h)
 {
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
     let recieveData = request.payload.data;
     let resCreateRole = await RolesModel(sequelize).create({roleName: recieveData[0].roleName,createdAt:"",updatedAt:""}, { individualHooks: true })
     const idRole = resCreateRole.id;
@@ -64,7 +84,16 @@ createRoles = async function(request,h)
 }
 
 createSubRole = async function(request,h) {
-
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
     // request.payload.data.forEach(function (value) {
     //     Object.assign(value,{createdAt: "",updatedAt: ""})
     //     console.log("value = ",value)
@@ -94,8 +123,29 @@ createSubRole = async function(request,h) {
     return (resData);
 }
 
+gettingAllSubRoles = async function(request,h){
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
+    const subRoles = await SubRoles(sequelize).findAll();
+
+    let resData = {
+        error: 200,
+        data: subRoles,
+        messages: response(200)
+    }
+    return resData;
+}
 exports.RolesHandler = {
     getRoles,
     createRoles,
-    createSubRole
+    createSubRole,
+    gettingAllSubRoles
 }

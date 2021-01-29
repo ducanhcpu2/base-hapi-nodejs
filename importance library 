@@ -5,3 +5,4 @@ thư viện để tạo báo cáo giống excel : https://nadbm.github.io/react-
 thu vien gen models : https://www.npmjs.com/package/sequelize-auto-models
 hoac : https://www.npmjs.com/package/sequelize-automate
 
+lenh gen model : sudo sequelize-automate -t js -h localhost -d QLNV -u anhnd9 -p Vtp@ctbc123 -P 3306  -e mysql -o app/models

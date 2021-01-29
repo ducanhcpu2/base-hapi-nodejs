@@ -22,7 +22,10 @@ module.exports = function(server) {
                     id : Joi.number()
                         .required()
                         .description('the id for the todo item'),
-                })
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             }
         },
     });
@@ -44,12 +47,44 @@ module.exports = function(server) {
                         .required()
                         .description('the id for the todo item'),
                     name:Joi.string().max(3)
-                }).label('Sum')
+                }).label('Sum'),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             },
             response: {
                 schema: Joi.array().items(getUserRes),
                 failAction: 'log'
             }
+
+        },
+
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/login',
+        options:{
+            handler: async function (request, h) {
+                const res = await UsersHandler.login(request,h)
+                return res;
+            },
+            description: 'Get todo',
+            notes: 'Returns a todo item by the id passed in the path',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                payload :Joi.object({
+                    username : Joi.string()
+                        .required()
+                        .description('the id for the todo item'),
+                    password:Joi.string().required()
+                }).label('model login'),
+
+            },
+            // response: {
+            //     schema: Joi.array().items(getUserRes),
+            //     failAction: 'log'
+            // }
 
         },
 
@@ -76,7 +111,10 @@ module.exports = function(server) {
                     gender: Joi.number().required(),
                     password:Joi.string().required(),
                     idRole: Joi.number().required()
-                })
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             },
             response: {
                 schema: common.responseCreateObj,
@@ -108,7 +146,10 @@ module.exports = function(server) {
                             subRoleName: Joi.string().required()
                         }
                     )
-                })
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             },
             response: {
                 schema: common.responseCreateRoles,
@@ -137,7 +178,10 @@ module.exports = function(server) {
                             RoleCode: Joi.string().required(),
                         }
                     )
-                })
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             },
             response: {
                 schema: common.responseCreateRoles,
@@ -162,7 +206,10 @@ module.exports = function(server) {
                 query: Joi.object().required().keys({
                     pageOffset: Joi.number().optional(),
                     pageSize: Joi.number().optional()
-                })
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             },
             response: {
                 schema: common.responseAllReports,
@@ -189,6 +236,9 @@ module.exports = function(server) {
                         .required()
                         .description('the id for the todo item'),
                 }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             },
             response: {
                 schema: common.responseAllReports,
@@ -218,7 +268,10 @@ module.exports = function(server) {
                 query: Joi.object().required().keys({
                     pageOffset: Joi.number().optional(),
                     pageSize: Joi.number().optional()
-                })
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             },
             response: {
                 schema: common.reponseDetailReport,
@@ -245,7 +298,10 @@ module.exports = function(server) {
                         .required()
                         .description('Mô tả cho báo cáo'),
                     idUser: Joi.number().required().description('id của user được gán báo cáo nhiệm vụ ')
-                })
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             },
             response: {
                 schema: common.responseCreateObj,
@@ -276,7 +332,10 @@ module.exports = function(server) {
                     location: Joi.string(),
                     note: Joi.string(),
                     idReport: Joi.number().required(),
-                })
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             },
             response: {
                 schema: common.responseCreateObj,
@@ -303,7 +362,10 @@ module.exports = function(server) {
                         .description('Mô tả cho báo cáo'),
                     idUser: Joi.number().required(),
                     idReport: Joi.number().required()
-                })
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
             },
             response: {
                 schema: common.responseCreateObj,
@@ -311,6 +373,27 @@ module.exports = function(server) {
             }
         },
     });
+
+    server.route({
+        method: 'GET',
+        path: '/getting_all_subRoles',
+        options:{
+            handler: async function (request, h) {
+                const res = await RolesHandler.gettingAllSubRoles(request,h)
+                return res;
+            },
+            description: 'xem danh sách các sub roles đã có sẵn',
+            notes: 'trả về danh sách sub role đang có trong hệ thống,user chỉ được gán những sub roles này',
+            tags: ['api'], // ADD THIS TAG
+            validate:{
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
+            }
+        },
+    });
+
+
 }
 
 
