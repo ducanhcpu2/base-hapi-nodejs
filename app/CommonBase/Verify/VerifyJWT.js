@@ -15,4 +15,4 @@ async function verifyJWT(accessToken) {
         return false;
     }
 }
-exports.verifyJWT = {verifyJWT};
+exports.verifyCommon = {verifyJWT};

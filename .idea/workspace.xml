@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f380636-2981-4997-b829-f97367758738" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/CommonBase/Verify/VerifyJWT.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CommonBase/Config/mysqlConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/Config/mysqlConfig.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CommonBase/DBConnection/MysqlConnection.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/DBConnection/MysqlConnection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CommonBase/RestApi/response.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/RestApi/response.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/CommonBase/Verify/VerifyJWT.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/Verify/VerifyJWT.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Handlers/ReportsHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Handlers/ReportsHandler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Handlers/RolesHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Handlers/RolesHandler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Handlers/UsersHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Handlers/UsersHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ResponseModel/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ResponseModel/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ResponseModel/getUserRes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ResponseModel/getUserRes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/reportDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/reportDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/reports.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/reports.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/subRoles.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/subRoles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen-procedure-stored.sql" beforeDir="false" afterPath="$PROJECT_DIR$/gen-procedure-stored.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/importance library " beforeDir="false" afterPath="$PROJECT_DIR$/importance library " afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +80,7 @@
       <workItem from="1611731158326" duration="20919000" />
       <workItem from="1611816134511" duration="591000" />
       <workItem from="1611816732205" duration="14964000" />
-      <workItem from="1611910315417" duration="7626000" />
+      <workItem from="1611910315417" duration="8752000" />
     </task>
     <servers />
   </component>

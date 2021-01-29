@@ -2,10 +2,11 @@ const ReportsModel = require('../models/reports')
 const ReportDetail = require('../models/reportDetail')
 const {sequelize} = require('../CommonBase/DBConnection/MysqlConnection')
 const {response} = require('../CommonBase/RestApi/response')
+const {verifyCommon} = require('../CommonBase/Verify/VerifyJWT')
 
 gettingAllReports = async function(request,h){
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,
@@ -34,7 +35,7 @@ gettingAllReports = async function(request,h){
 }
 gettingReportById = async function(request,h) {
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,
@@ -65,7 +66,7 @@ gettingReportById = async function(request,h) {
 }
 gettingDetailReport = async function(request,h) {
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,
@@ -92,7 +93,7 @@ gettingDetailReport = async function(request,h) {
 }
 createReport = async function(request,h){
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,
@@ -126,7 +127,7 @@ createReport = async function(request,h){
 }
 createDetailReport = async function(request,h) {
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,
@@ -161,7 +162,7 @@ createDetailReport = async function(request,h) {
 
 updateReport = async function(request,h) {
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,

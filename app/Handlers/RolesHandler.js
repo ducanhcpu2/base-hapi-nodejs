@@ -4,10 +4,11 @@ const RoleDetailModel = require('../models/roleDetail')
 const SubRoles = require('../models/subRoles')
 const {sequelize} = require('../CommonBase/DBConnection/MysqlConnection')
 const {response} = require('../CommonBase/RestApi/response')
+const {verifyCommon} = require('../CommonBase/Verify/VerifyJWT')
 getRoles = async function(request,h)
 {
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,
@@ -39,7 +40,7 @@ getRoles = async function(request,h)
 createRoles = async function(request,h)
 {
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,
@@ -85,7 +86,7 @@ createRoles = async function(request,h)
 
 createSubRole = async function(request,h) {
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,
@@ -125,7 +126,7 @@ createSubRole = async function(request,h) {
 
 gettingAllSubRoles = async function(request,h){
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,

@@ -2,7 +2,7 @@ const UsersModel = require('../models/users.js');
 const JWTModel = require('../models/JWT');
 const {sequelize} = require("../CommonBase/DBConnection/MysqlConnection")
 const jwt = require('jsonwebtoken');
-const {verifyJWT} = require('../CommonBase/Verify/VerifyJWT')
+const {verifyCommon} = require('../CommonBase/Verify/VerifyJWT')
 var crypto = require('crypto');
 
 const SECRET = 'shhhh';
@@ -10,7 +10,7 @@ const SECRET = 'shhhh';
 
 GetUsers = async function(request,h){
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,
@@ -36,7 +36,7 @@ GetUsers = async function(request,h){
 registerUser = async function(request,h){
     // validate
     let accessToken = request.headers.access_token;
-    let resultVerify = await verifyJWT(accessToken)
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
         let resData = {
             error: 2,
