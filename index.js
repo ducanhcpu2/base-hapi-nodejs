@@ -10,7 +10,10 @@ const init = async () => {
 
     const server = Hapi.server({
         port: 3001,
-        host: 'localhost'
+        host: '192.168.5.184',
+        routes: {
+            cors: true
+        }
     });
     const swaggerOptions = {
         info: {

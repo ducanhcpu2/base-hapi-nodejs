@@ -90,6 +90,33 @@ module.exports = function(server) {
 
     });
 
+    // server.route({
+    //     method: 'GET',
+    //     path: '/login',
+    //     options:{
+    //         handler: {
+    //             directory: {
+    //                 path: 'build/login',
+    //                 listing: false
+    //             }
+    //         },
+    //
+    //     },
+    //
+    // });
+
+    server.route({
+        method: 'GET',
+        path: '/auth/login',
+        options:{
+            handler: function (request, h)  {
+                return h.file('/build');
+            },
+
+        },
+
+    });
+
     server.route({
         method: 'POST',
         path: '/register_user',

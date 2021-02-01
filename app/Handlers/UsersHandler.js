@@ -91,9 +91,9 @@ login = async function(request,h){
     let checkPhone = await UsersModel(sequelize).findOne({ where: { phoneNumber : username ,password : password} });
     if (!checkPhone && !checkEmail ) {
         let resData = {
-            error: 200,
-            data: 'Sai tên đăng nhập hoặc mật khẩu !',
-            messages: response(200)
+            error: 3,
+            data: null,
+            messages: response(3)
         }
         return resData
     }

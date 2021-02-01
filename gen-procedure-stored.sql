@@ -75,6 +75,7 @@ end;
 
 //
 
+delimiter //
 
 CREATE PROCEDURE saveToken(IN access_token varchar(255),IN id_user int)
 begin
@@ -86,3 +87,4 @@ begin
 
     end if;
 end;
+//
