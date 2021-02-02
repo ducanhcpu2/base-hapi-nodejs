@@ -77,6 +77,10 @@ end;
 
 delimiter //
 
+update users set password = 'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=' where id='1';
+//
+
+
 CREATE PROCEDURE saveToken(IN access_token varchar(255),IN id_user int)
 begin
     if( select idUser from JWT where idUser = id_user  )then

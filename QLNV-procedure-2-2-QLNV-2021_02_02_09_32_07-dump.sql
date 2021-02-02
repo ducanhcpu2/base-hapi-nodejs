@@ -16,6 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `JWT`
+--
+
+DROP TABLE IF EXISTS `JWT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `JWT` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `token` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `idUser` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `JWT`
+--
+
+LOCK TABLES `JWT` WRITE;
+/*!40000 ALTER TABLE `JWT` DISABLE KEYS */;
+INSERT INTO `JWT` VALUES (8,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjA5ODQ4MTkxNjAiLCJwYXNzd29yZCI6IkxBL3BJNDh6dkFOUTRkOS9GMnBLN1lnbVJqUmZrY2pLd2gzYUZjZ2ZVMjA9IiwiaWF0IjoxNjEyMTc0NjQ4fQ.An4yWgdmkQL4YryCcEY9F7ookgh5nVwe_Q2n28CufN4',1);
+/*!40000 ALTER TABLE `JWT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `reportDetail`
 --
 
@@ -38,7 +63,7 @@ CREATE TABLE `reportDetail` (
   UNIQUE KEY `reportDetail_id_uindex` (`id`),
   KEY `reportDetail_reports_id_fk` (`idReport`),
   CONSTRAINT `reportDetail_reports_id_fk` FOREIGN KEY (`idReport`) REFERENCES `reports` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +72,7 @@ CREATE TABLE `reportDetail` (
 
 LOCK TABLES `reportDetail` WRITE;
 /*!40000 ALTER TABLE `reportDetail` DISABLE KEYS */;
-INSERT INTO `reportDetail` VALUES (1,'Bác sỹ trưởng khoa răng hàm mặt hôm nay không đi làm','2011-11-10 17:00:00','Bạch Mai','BS Hùng',NULL,'Hẹn hôm sau gặp lại',NULL,1,NULL,NULL);
+INSERT INTO `reportDetail` VALUES (1,'Bác sỹ trưởng khoa răng hàm mặt hôm nay không đi làm','2011-11-10 17:00:00','Bạch Mai','BS Hùng',NULL,'Hẹn hôm sau gặp lại',NULL,1,NULL,NULL),(2,'Đi 1 tuần tại TP.HCM',NULL,'khong co','khong co','TP.HCM','tìm hiểu các bệnh viện TP.HCM','Đi khảo sát thị trường tại TP.HCM',3,'2021-01-28 03:14:56','2021-01-28 03:14:56'),(3,'Đi 1 tuần tại Cà mau',NULL,NULL,'','Cà Mau','tìm hiểu các bệnh viện Cà Mau','Đi khảo sát thị trường tại Cà Mau',3,'2021-01-28 03:19:53','2021-01-28 03:19:53'),(4,'Đi 1 tuần tại Cà mau',NULL,NULL,NULL,'Cà Mau','tìm hiểu các bệnh viện Cà Mau','Đi khảo sát thị trường tại Cà Mau lan 2',3,'2021-01-28 03:21:23','2021-01-28 03:21:23');
 /*!40000 ALTER TABLE `reportDetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,11 +87,13 @@ CREATE TABLE `reports` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `idUser` int NOT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `reports_id_uindex` (`id`),
   KEY `Reports_users_id_fk` (`idUser`),
   CONSTRAINT `Reports_users_id_fk` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +102,7 @@ CREATE TABLE `reports` (
 
 LOCK TABLES `reports` WRITE;
 /*!40000 ALTER TABLE `reports` DISABLE KEYS */;
-INSERT INTO `reports` VALUES (1,'Báo cáo tiến độ làm việc với bệnh viện Bạch Mai',2),(2,'Báo cáo tiến độ làm việc với bệnh viện Hữu Nghị',2);
+INSERT INTO `reports` VALUES (1,'Báo cáo tiến độ làm việc với bệnh viện Bạch Mai',2,NULL,NULL),(2,'Báo cáo tiến độ làm việc với bệnh viện Hữu Nghị',2,NULL,NULL),(3,'BÁO CÁO KẾ HOẠCH MỞ RỘNG THỊ TRƯỜNG MIỀN NAM',2,'2021-01-28 03:02:14','2021-01-28 04:13:17');
 /*!40000 ALTER TABLE `reports` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +214,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_id_uindex` (`id`),
   KEY `users_roles_id_fk` (`idRole`),
   CONSTRAINT `users_roles_id_fk` FOREIGN KEY (`idRole`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +223,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Nguyen Duc Anh','anhnd151@viettelpost.com.vn','0984819160',1,'',NULL,NULL,1),(2,'Nguyen Duc Hau','haund1@viettelpost.com.vn','0912313218',1,'',NULL,NULL,2),(3,'Nguyen Quang Vinh','vinhnq123@viettelpost.com.vn','0912312312',1,'',NULL,NULL,3),(4,'Pham Kim Anh','anhkm22@viettelpost.com.vn','0912381239',0,'',NULL,NULL,3),(5,'Dinh Thi Phuong','phuongdt123@viettelpost.com.vn','0915320728',0,'','2021-01-26 02:09:15','2021-01-26 02:09:15',4);
+INSERT INTO `users` VALUES (1,'Nguyen Duc Anh','anhnd151@viettelpost.com.vn','0984819160',1,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,1),(2,'Nguyen Duc Hau','haund1@viettelpost.com.vn','0912313218',1,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,2),(3,'Nguyen Quang Vinh','vinhnq123@viettelpost.com.vn','0912312312',1,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,3),(4,'Pham Kim Anh','anhkm22@viettelpost.com.vn','0912381239',0,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,3),(5,'Dinh Thi Phuong','phuongdt123@viettelpost.com.vn','0915320728',0,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=','2021-01-26 02:09:15','2021-01-26 02:09:15',4);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -209,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-27 16:38:16
+-- Dump completed on 2021-02-02  9:32:07
