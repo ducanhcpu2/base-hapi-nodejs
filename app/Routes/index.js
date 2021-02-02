@@ -90,33 +90,6 @@ module.exports = function(server) {
 
     });
 
-    // server.route({
-    //     method: 'GET',
-    //     path: '/login',
-    //     options:{
-    //         handler: {
-    //             directory: {
-    //                 path: 'build/login',
-    //                 listing: false
-    //             }
-    //         },
-    //
-    //     },
-    //
-    // });
-
-    server.route({
-        method: 'GET',
-        path: '/auth/login',
-        options:{
-            handler: function (request, h)  {
-                return h.file('/build');
-            },
-
-        },
-
-    });
-
     server.route({
         method: 'POST',
         path: '/register_user',
@@ -156,6 +129,7 @@ module.exports = function(server) {
         method: 'POST',
         path: '/creat_roles',
         options:{
+
             handler: async function (request, h) {
                 const res = await RolesHandler.createRoles(request,h)
                 return res;
@@ -190,6 +164,7 @@ module.exports = function(server) {
         method: 'POST',
         path: '/create_sub_roles',
         options:{
+
             handler: async function (request, h) {
                 const res = await RolesHandler.createSubRole(request,h)
                 return res;
@@ -222,6 +197,7 @@ module.exports = function(server) {
         method: 'GET',
         path: '/getting_all_reports',
         options:{
+
             handler: async function (request, h) {
                 const res = await ReportsHandler.gettingAllReports(request,h)
                 return res;
@@ -250,6 +226,7 @@ module.exports = function(server) {
         method: 'GET',
         path: '/getting_reports_by_id/{idUser}',
         options:{
+
             handler: async function (request, h) {
                 const res = await ReportsHandler.gettingReportById(request,h)
                 return res;
@@ -279,6 +256,7 @@ module.exports = function(server) {
         method: 'GET',
         path: '/getting_detail_reports/{idReport}',
         options:{
+
             handler: async function (request, h) {
                 const res = await ReportsHandler.gettingDetailReport(request,h)
                 return res;
@@ -375,6 +353,7 @@ module.exports = function(server) {
         method: 'POST',
         path: '/update_report',
         options:{
+
             handler: async function (request, h) {
                 const res = await ReportsHandler.updateReport(request,h)
                 return res;

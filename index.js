@@ -12,8 +12,14 @@ const init = async () => {
         port: 3001,
         host: '192.168.5.184',
         routes: {
-            cors: true
+            cors: {
+                origin: ["*"],
+                headers:["Accept","Content-type"],
+                additionalHeaders: ['cache-control', 'x-requested-with','access_token']
+
+            }
         }
+
     });
     const swaggerOptions = {
         info: {
@@ -30,6 +36,8 @@ const init = async () => {
             options: swaggerOptions
         }
     ]);
+
+
     await server.start();
     require('./app/Routes')(server);
     //require('./app/models/index')(sequelize);
