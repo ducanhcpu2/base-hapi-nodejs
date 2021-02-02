@@ -4,9 +4,6 @@
     <list default="true" id="6f380636-2981-4997-b829-f97367758738" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QLNV-27-1-QLNV-2021_01_27_16_38_16-dump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/QLNV-procedure-2-2-QLNV-2021_02_02_09_32_07-dump.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/CommonBase/DBConnection/ConnectionString.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen-procedure-stored.sql" beforeDir="false" afterPath="$PROJECT_DIR$/gen-procedure-stored.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +90,7 @@
       <workItem from="1611910315417" duration="9588000" />
       <workItem from="1611979096822" duration="895000" />
       <workItem from="1612154023136" duration="633000" />
-      <workItem from="1612163282345" duration="8280000" />
+      <workItem from="1612163282345" duration="9005000" />
     </task>
     <servers />
   </component>
