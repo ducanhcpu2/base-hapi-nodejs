@@ -381,6 +381,25 @@ module.exports = function(server) {
     });
 
     server.route({
+        method: 'POST',
+        path: '/logout',
+        options:{
+            handler: async function (request, h) {
+                const res = await UsersHandler.logout(request,h)
+                return res;
+            },
+            description: 'logout',
+            notes: 'Returns 200 if success else false and detail error in data',
+            tags: ['api'], // ADD THIS TAG
+            validate:{
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
+            }
+        },
+    });
+
+    server.route({
         method: 'GET',
         path: '/getting_all_subRoles',
         options:{

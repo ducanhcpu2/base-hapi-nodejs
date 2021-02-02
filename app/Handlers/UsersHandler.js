@@ -139,8 +139,42 @@ login = async function(request,h){
     return  saveToken;
 }
 
+logout = async function(request,h){
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
+
+    let result = await JWTModel(sequelize).destroy({ where: { token: accessToken} })
+        .then(v=>{
+            let resData = {
+                error: 200,
+                data: "OK",
+                messages: response(200)
+            }
+            return resData;
+        }).catch(err =>{
+            let resData = {
+                error: 500,
+                data: err,
+                messages: response(500)
+            }
+            return resData;
+        })
+
+    return result;
+
+}
+
 exports.UsersHandler = {
     GetUsers,
     registerUser,
-    login
+    login,
+    logout
 };
