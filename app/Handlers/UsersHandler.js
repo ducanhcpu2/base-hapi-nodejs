@@ -5,8 +5,6 @@ const jwt = require('jsonwebtoken');
 const {verifyCommon} = require('../CommonBase/Verify/VerifyJWT')
 var crypto = require('crypto');
 
-const SECRET = 'shhhh';
-
 
 GetUsers = async function(request,h){
     let accessToken = request.headers.access_token;
@@ -48,7 +46,7 @@ registerUser = async function(request,h){
 
     let checkEmail = await UsersModel(sequelize).findAll({ where: { email: request.payload.email} });
     let checkPhone = await UsersModel(sequelize).findAll({ where: { phoneNumber : request.payload.phoneNumber} });
-    if (checkEmail.length !== 0 || checkPhone !== 0) {
+    if (checkEmail.length !== 0 || checkPhone.length !== 0) {
         let resData = {
             error: 200,
             data: 'email hoặc số điện thoại đã được sử dụng !',
@@ -87,9 +85,9 @@ login = async function(request,h){
     let username = request.payload.username;
     let password = crypto.createHash('sha256').update(request.payload.password).digest('base64');
 
-    let checkEmail = await UsersModel(sequelize).findOne({ where: { email: username,password : password} });
-    let checkPhone = await UsersModel(sequelize).findOne({ where: { phoneNumber : username ,password : password} });
-    if (!checkPhone && !checkEmail ) {
+    let checkEmail = await UsersModel(sequelize).findAll({ where: { email: username,password : password} });
+    let checkPhone = await UsersModel(sequelize).findAll({ where: { phoneNumber : username ,password : password} });
+    if (checkPhone.length !== 0 && checkEmail.length !==0 ) {
         let resData = {
             error: 3,
             data: null,
@@ -99,17 +97,23 @@ login = async function(request,h){
     }
 
     const payload = {
-        username: username,
-        password: password
+        username: username
     }
 
-    const token = jwt.sign(payload, SECRET);
+    const token = jwt.sign(payload, verifyCommon.SECRET);
 
-    let idUser = checkPhone.id ? checkPhone.id : checkEmail.id;
+    let idUser ;
+    if (checkEmail.length === 0) {
+         idUser = checkPhone[0].id;
+    }else{
+        idUser = checkEmail[0].id;
+    }
+    console.log("idUser = ",idUser)
 
     const saveToken = await sequelize
         .query('CALL saveToken(:access_token,:id_user)',{replacements:{access_token: token,id_user: idUser}})
         .then(v=>{
+            console.log(v)
             h.state('access_token', token, {
                 maxAge: 365 * 24 * 60 * 60 * 100,
                 httpOnly: true,
@@ -123,6 +127,7 @@ login = async function(request,h){
             return resData;
 
         }).catch(err => {
+            console.log("err = ",err)
             let resData = {
                 error: 500,
                 data: err,
