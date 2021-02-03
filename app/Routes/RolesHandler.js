@@ -2,6 +2,7 @@ const {RolesHandler} = require("../Handlers/RolesHandler");
 const {common} = require('../models/ResponseModel/common')
 const Joi = require('joi')
 const {getUserRes} = require('../models/ResponseModel/getUserRes')
+
 module.exports = function(server) {
     server.route({
         method: 'GET',

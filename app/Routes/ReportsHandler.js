@@ -1,12 +1,12 @@
-const {RolesHandler} = require("../Handlers/RolesHandler");
+const {ReportsHandler} = require("../Handlers/ReportsHandler");
 const {common} = require('../models/ResponseModel/common')
 const Joi = require('joi')
+
 module.exports = function(server) {
     server.route({
         method: 'GET',
         path: '/getting_all_reports',
         options:{
-
             handler: async function (request, h) {
                 const res = await ReportsHandler.gettingAllReports(request,h)
                 return res;

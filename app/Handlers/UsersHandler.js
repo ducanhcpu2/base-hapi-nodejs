@@ -1,8 +1,11 @@
 const UsersModel = require('../models/users.js');
 const JWTModel = require('../models/JWT');
+const RoleDetail = require('../models/roleDetail')
 const {sequelize} = require("../CommonBase/DBConnection/MysqlConnection")
 const jwt = require('jsonwebtoken');
 const {verifyCommon} = require('../CommonBase/Verify/VerifyJWT')
+
+
 var crypto = require('crypto');
 
 
@@ -115,19 +118,29 @@ login = async function(request,h){
         return resData
     }
 
+    let idUser ;
+    if (checkEmail.length === 0) {
+        idUser = checkPhone[0].id;
+    }else{
+        idUser = checkEmail[0].id;
+    }
+
+    let listRoles = await sequelize
+        .query('CALL getListTolesByIdUser(:id_user)', {replacements:{id_user: idUser}})
+        .then(v=>{
+            console.log(v)
+            return v
+        });
+    console.log("listRoles = ",listRoles)
     const payload = {
-        username: username
+        username: username,
+        role: listRoles
     }
 
     const token = jwt.sign(payload, verifyCommon.SECRET);
 
-    let idUser ;
-    if (checkEmail.length === 0) {
-         idUser = checkPhone[0].id;
-    }else{
-        idUser = checkEmail[0].id;
-    }
-    console.log("idUser = ",idUser)
+
+
 
     const saveToken = await sequelize
         .query('CALL saveToken(:access_token,:id_user)',{replacements:{access_token: token,id_user: idUser}})
@@ -190,6 +203,8 @@ logout = async function(request,h){
     return result;
 
 }
+
+
 
 exports.UsersHandler = {
     GetUsers,

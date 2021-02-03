@@ -73,6 +73,12 @@ begin
 
 end;
 
+CREATE PROCEDURE getListTolesByIdUser(IN id_user int)
+begin
+    select rd.RoleCode from users as u , roleDetail as rd where u.idRole = rd.idRole and id_user = u.id;
+end;
+
+
 //
 
 delimiter //

@@ -5,7 +5,7 @@ module.exports = function(server) {
 
     require('../Routes/RolesHandler')(server);
 
-    require('../Routes/ReportsHandler')
+    require('../Routes/ReportsHandler')(server)
 
 }
 

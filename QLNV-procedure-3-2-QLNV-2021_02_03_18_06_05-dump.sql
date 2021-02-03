@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.22, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: QLNV
 -- ------------------------------------------------------
--- Server version	8.0.22-0ubuntu0.20.04.3
+-- Server version	8.0.23-0ubuntu0.20.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +27,7 @@ CREATE TABLE `JWT` (
   `token` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `idUser` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `JWT` (
 
 LOCK TABLES `JWT` WRITE;
 /*!40000 ALTER TABLE `JWT` DISABLE KEYS */;
-INSERT INTO `JWT` VALUES (8,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjA5ODQ4MTkxNjAiLCJwYXNzd29yZCI6IkxBL3BJNDh6dkFOUTRkOS9GMnBLN1lnbVJqUmZrY2pLd2gzYUZjZ2ZVMjA9IiwiaWF0IjoxNjEyMTc0NjQ4fQ.An4yWgdmkQL4YryCcEY9F7ookgh5nVwe_Q2n28CufN4',1);
+INSERT INTO `JWT` VALUES (10,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhdW5kMUB2aWV0dGVscG9zdC5jb20udm4iLCJpYXQiOjE2MTIzMjU5ODF9.1_XBdvOFpvDFXTvg2y5Ty-fbhd_N07nN6UCnAe0Dx1c',2),(12,'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjA5ODQ4MTkxNjAiLCJyb2xlIjpbeyJSb2xlQ29kZSI6IlZJRVdfVVNFUiJ9LHsiUm9sZUNvZGUiOiJBRERfVVNFUiJ9XSwiaWF0IjoxNjEyMzQ4OTM5fQ.5cRFC6pFb3DjPpK7Hnx1r6aS4M0IzgSBc6AAwlQrSoE',1);
 /*!40000 ALTER TABLE `JWT` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,10 +177,10 @@ DROP TABLE IF EXISTS `subRoles`;
 CREATE TABLE `subRoles` (
   `id` int NOT NULL AUTO_INCREMENT,
   `subRoleName` varchar(50) DEFAULT NULL,
-  `RoleCode` varchar(15) DEFAULT NULL,
+  `RoleCode` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `subRoles_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +189,7 @@ CREATE TABLE `subRoles` (
 
 LOCK TABLES `subRoles` WRITE;
 /*!40000 ALTER TABLE `subRoles` DISABLE KEYS */;
-INSERT INTO `subRoles` VALUES (1,'Thêm user','ADD_USER'),(2,'Xem user','VIEW_USER'),(3,'Sửa user','EDIT_USER'),(4,'Xóa user','DELETE_USER'),(5,'Thêm báo cáo','ADD_REPORT'),(6,'Sửa báo cáo','EDIT_REPORT');
+INSERT INTO `subRoles` VALUES (1,'Thêm user','ADD_USER'),(2,'Xem user','VIEW_USER'),(3,'Sửa user','EDIT_USER'),(4,'Xóa user','DELETE_USER'),(5,'Thêm báo cáo','ADD_REPORT'),(6,'Sửa báo cáo','EDIT_REPORT'),(7,'Quyền xem toàn bộ báo cáo','VIEW_ALL_REPORTS');
 /*!40000 ALTER TABLE `subRoles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +214,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_id_uindex` (`id`),
   KEY `users_roles_id_fk` (`idRole`),
   CONSTRAINT `users_roles_id_fk` FOREIGN KEY (`idRole`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,7 +223,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Nguyen Duc Anh','anhnd151@viettelpost.com.vn','0984819160',1,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,1),(2,'Nguyen Duc Hau','haund1@viettelpost.com.vn','0912313218',1,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,2),(3,'Nguyen Quang Vinh','vinhnq123@viettelpost.com.vn','0912312312',1,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,3),(4,'Pham Kim Anh','anhkm22@viettelpost.com.vn','0912381239',0,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,3),(5,'Dinh Thi Phuong','phuongdt123@viettelpost.com.vn','0915320728',0,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=','2021-01-26 02:09:15','2021-01-26 02:09:15',4);
+INSERT INTO `users` VALUES (1,'Nguyen Duc Anh','anhnd151@viettelpost.com.vn','0984819160',1,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,1),(2,'Nguyen Duc Hau','haund1@viettelpost.com.vn','0912313218',1,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,2),(3,'Nguyen Quang Vinh','vinhnq123@viettelpost.com.vn','0912312312',1,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,3),(4,'Pham Kim Anh','anhkm22@viettelpost.com.vn','0912381239',0,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=',NULL,NULL,3),(5,'Dinh Thi Phuong','phuongdt123@viettelpost.com.vn','0915320728',0,'LA/pI48zvANQ4d9/F2pK7YgmRjRfkcjKwh3aFcgfU20=','2021-01-26 02:09:15','2021-01-26 02:09:15',4),(12,'Nguyen Van A','string','0123456789',0,'hNiYd/DUBB77a/kaFvAkjy/Vc+avBcGflr7bn4gveII=','2021-02-02 03:44:29','2021-02-02 03:44:29',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -236,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-02  9:32:07
+-- Dump completed on 2021-02-03 18:06:05

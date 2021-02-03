@@ -3,8 +3,12 @@ const ReportDetail = require('../models/reportDetail')
 const {sequelize} = require('../CommonBase/DBConnection/MysqlConnection')
 const {response} = require('../CommonBase/RestApi/response')
 const {verifyCommon} = require('../CommonBase/Verify/VerifyJWT')
+const jwt = require('jsonwebtoken');
+const SECRET = 'shhhh';
 
 gettingAllReports = async function(request,h){
+    console.log("ok = ")
+
     let accessToken = request.headers.access_token;
     let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
@@ -12,6 +16,26 @@ gettingAllReports = async function(request,h){
             error: 2,
             data: null,
             messages: response(2)
+        }
+        return resData;
+    }
+
+    //check role
+    const decoded = jwt.verify(accessToken, SECRET);
+    let checker = false;
+    decoded.role.forEach(function (value) {
+       if(value.RoleCode === "VIEW_ALL_REPORTS"){
+           checker = true;
+           return;
+       }
+       console.log("value = ",value)
+   })
+
+    if(!checker) {
+        const resData = {
+            error: 4,
+            data: null,
+            messages: response(4)
         }
         return resData;
     }
