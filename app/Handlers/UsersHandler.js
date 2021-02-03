@@ -26,8 +26,27 @@ GetUsers = async function(request,h){
     }
     return resData;
 
+}
 
+gettingAllUsers = async function(request,h){
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
 
+    const users = await UsersModel(sequelize).findAll();
+    let resData = {
+        error: 200,
+        data: users,
+        messages: response(200)
+    }
+    return resData;
 
 }
 
@@ -87,7 +106,7 @@ login = async function(request,h){
 
     let checkEmail = await UsersModel(sequelize).findAll({ where: { email: username,password : password} });
     let checkPhone = await UsersModel(sequelize).findAll({ where: { phoneNumber : username ,password : password} });
-    if (checkPhone.length !== 0 && checkEmail.length !==0 ) {
+    if (checkPhone.length === 0 && checkEmail.length ===0 ) {
         let resData = {
             error: 3,
             data: null,
@@ -176,5 +195,6 @@ exports.UsersHandler = {
     GetUsers,
     registerUser,
     login,
-    logout
+    logout,
+    gettingAllUsers
 };

@@ -26,9 +26,16 @@ gettingAllReports = async function(request,h){
             return v
         });
 
+    let counter = await  ReportsModel(sequelize).count();
+
+    let objResponse = {
+        list: res,
+        total_pages: Math.floor(counter / pageSize) + 1
+    }
+
     const resData = {
         error: 200,
-        data: res,
+        data: objResponse,
         messages: response(200)
     }
     return resData;
@@ -84,9 +91,16 @@ gettingDetailReport = async function(request,h) {
             return v
         });
 
+    let counter = await  ReportDetail(sequelize).count({where: {idReport: request.params.idReport}});
+
+    let objResponse = {
+        list: res,
+        total_pages: Math.floor(counter / pageSize) + 1
+    }
+
     const resData = {
         error: 200,
-        data: res,
+        data: objResponse,
         messages: response(200)
     }
     return (resData);

@@ -7,6 +7,7 @@ const {response} = require('../CommonBase/RestApi/response')
 const {verifyCommon} = require('../CommonBase/Verify/VerifyJWT')
 getRoles = async function(request,h)
 {
+    console.log("request.query.id = ",request.query.id)
     let accessToken = request.headers.access_token;
     let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
@@ -17,21 +18,53 @@ getRoles = async function(request,h)
         }
         return resData;
     }
-    // const roles = await RolesModel(sequelize).findAll();
-    // console.log(roles.every(roles => roles instanceof RolesModel(sequelize))); // true
-    // console.log("All users:", JSON.stringify(roles, null, 2));
-    // return h.response(JSON.stringify(roles, null, 2));
+
     const res = await sequelize
-        .query('CALL getRoleById(:id)',{replacements:{id:request.payload.id}})
+        .query('CALL getRoleById(:id)',{replacements:{id:request.query.id}})
         .then(v=>{
             console.log(v)
             return v
         });
     console.log("mes  = ",response(200))
 
+    //let counter = await  RolesModel(sequelize).count();
+
+    let objResponse = {
+        list: res,
+        total_pages: 0//Math.floor(counter / pageSize) + 1
+    }
     const resData = {
         error: 200,
-        data: res,
+        data: objResponse,
+        messages: response(200)
+    }
+    return (resData);
+}
+
+getRoleDetail = async function(request,h){
+    console.log("request.query.id = ",request.query.id)
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
+
+    const res = await RoleDetailModel(sequelize).findAll({where: {idRole: request.query.idRole}})
+
+    //let counter = await  RolesModel(sequelize).count();
+
+    let objResponse = {
+        list: res,
+        total_pages: 1//Math.floor(counter / pageSize) + 1
+    }
+    const resData = {
+        error: 200,
+        data: objResponse,
         messages: response(200)
     }
     return (resData);
@@ -136,10 +169,67 @@ gettingAllSubRoles = async function(request,h){
         return resData;
     }
     const subRoles = await SubRoles(sequelize).findAll();
-
+    let objResponse = {
+        list: subRoles,
+        total_pages: 0
+    }
     let resData = {
         error: 200,
-        data: subRoles,
+        data: objResponse,
+        messages: response(200)
+    }
+    return resData;
+}
+
+gettingRolesPage = async function(request,h){
+
+    let pageOffset = request.query.pageOffset;
+    let pageSize = request.query.pageSize;
+
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
+    const subRoles = await RolesModel(sequelize).findAll({offset: pageOffset,limit: pageSize,order:[]});
+    let counter = await  RolesModel(sequelize).count();
+    let objResponse = {
+        list: subRoles,
+        total_pages: Math.floor(counter/pageSize) + 1
+    }
+    let resData = {
+        error: 200,
+        data: objResponse,
+        messages: response(200)
+    }
+    return resData;
+}
+
+gettingAllRoles = async function(request,h){
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
+    const subRoles = await RolesModel(sequelize).findAll();
+
+    let objResponse = {
+        list: subRoles,
+        total_pages: 0
+    }
+    let resData = {
+        error: 200,
+        data: objResponse,
         messages: response(200)
     }
     return resData;
@@ -148,5 +238,8 @@ exports.RolesHandler = {
     getRoles,
     createRoles,
     createSubRole,
-    gettingAllSubRoles
+    gettingAllSubRoles,
+    gettingAllRoles,
+    gettingRolesPage,
+    getRoleDetail
 }
