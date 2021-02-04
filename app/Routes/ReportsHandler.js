@@ -144,7 +144,7 @@ module.exports = function(server) {
                     hospital: Joi.string().allow('',null),
                     doctor:Joi.string().allow('',null),
                     location: Joi.string(),
-                    note: Joi.string(),
+                    note: Joi.string().allow('',null),
                     idReport: Joi.number().required(),
                 }),
                 headers: Joi.object({

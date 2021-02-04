@@ -39,6 +39,10 @@ module.exports = function(server) {
             notes: 'Returns a todo item by the id passed in the path',
             tags: ['api'], // ADD THIS TAG
             validate: {
+                query: Joi.object().required().keys({
+                    pageOffset: Joi.number().optional(),
+                    pageSize: Joi.number().optional()
+                }),
                 headers: Joi.object({
                     'access_token': Joi.string().required()
                 }).unknown()
@@ -116,6 +120,29 @@ module.exports = function(server) {
             notes: 'Returns 200 if success else false and detail error in data',
             tags: ['api'], // ADD THIS TAG
             validate:{
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
+            }
+        },
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/search_user_by_option',
+        options:{
+            handler: async function (request, h) {
+                const res = await UsersHandler.gettingUserByOption(request,h)
+                return res;
+            },
+            description: 'search users theo option',
+            notes: 'Returns 200 if success else false and detail error in data',
+            tags: ['api'], // ADD THIS TAG
+            validate:{
+                query: Joi.object().required().keys({
+                    option: Joi.string().optional(),
+                    param: Joi.string().optional()
+                }),
                 headers: Joi.object({
                     'access_token': Joi.string().required()
                 }).unknown()

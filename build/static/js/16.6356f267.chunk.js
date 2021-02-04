@@ -1,0 +1,2 @@
+(this["webpackJsonphnk-v1"]=this["webpackJsonphnk-v1"]||[]).push([[16],{459:function(n,t,e){"use strict";e.r(t);var a=e(0),c=e.n(a),s=e(29),r=e(24);t.default=function(){return c.a.createElement(s.c,{to:r.a.HOME})}}}]);
+//# sourceMappingURL=16.6356f267.chunk.js.map

@@ -32,6 +32,8 @@ GetUsers = async function(request,h){
 }
 
 gettingAllUsers = async function(request,h){
+    let pageOffset = request.query.pageOffset;
+    let pageSize = request.query.pageSize;
     let accessToken = request.headers.access_token;
     let resultVerify = await verifyCommon.verifyJWT(accessToken)
     if(resultVerify) {
@@ -43,16 +45,59 @@ gettingAllUsers = async function(request,h){
         return resData;
     }
 
-    const users = await UsersModel(sequelize).findAll();
+    const users = await UsersModel(sequelize).findAll({offset: pageOffset,limit: pageSize,order:[],attributes: ['id', 'fullName','email','phoneNumber','createdAt','updatedAt']});
+    let counter = await UsersModel(sequelize).count();
+
+    let objResponse = {
+        list: users,
+        total_pages: Math.floor(counter/pageSize) + 1
+    }
     let resData = {
         error: 200,
-        data: users,
+        data: objResponse,
         messages: response(200)
     }
     return resData;
 
 }
 
+gettingUserByOption = async function(request,h){
+
+    let option = request.query.option;
+    let param =  request.query.param;
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
+
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
+
+    let search = await sequelize
+        .query('CALL searchUser(:opt,:param)', {replacements:{opt: option,param: param}})
+        .then(v=>{
+            console.log(v)
+            let resData = {
+                error: 200,
+                data: v,
+                messages: response(200)
+            }
+            return resData
+        }).catch(err => {
+            let resData = {
+                error: 200,
+                data: err,
+                messages: response(200)
+            }
+            return resData;
+        });
+    return search;
+
+}
 registerUser = async function(request,h){
     // validate
     let accessToken = request.headers.access_token;
@@ -124,7 +169,7 @@ login = async function(request,h){
     }else{
         idUser = checkEmail[0].id;
     }
-
+    console.log("id_user = ",idUser)
     let listRoles = await sequelize
         .query('CALL getListTolesByIdUser(:id_user)', {replacements:{id_user: idUser}})
         .then(v=>{
@@ -211,5 +256,6 @@ exports.UsersHandler = {
     registerUser,
     login,
     logout,
-    gettingAllUsers
+    gettingAllUsers,
+    gettingUserByOption
 };

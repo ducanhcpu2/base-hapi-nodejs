@@ -83,7 +83,7 @@ createRoles = async function(request,h)
         return resData;
     }
     let recieveData = request.payload.data;
-    let resCreateRole = await RolesModel(sequelize).create({roleName: recieveData[0].roleName,createdAt:"",updatedAt:""}, { individualHooks: true })
+    let resCreateRole = await RolesModel(sequelize).create({roleName: recieveData[0].roleName}, { individualHooks: true })
     const idRole = resCreateRole.id;
     let parseReciveData = recieveData;
 
@@ -133,6 +133,7 @@ createSubRole = async function(request,h) {
     //     console.log("value = ",value)
     //
     // })
+
     let result = await SubRoles(sequelize).bulkCreate(request.payload.data, { individualHooks: true }).then(() => {
         return "OK";
     }).catch((err) => {
@@ -140,6 +141,7 @@ createSubRole = async function(request,h) {
         console.log(err);
         return err.toString();
     });
+
     let resData = {
         error: 200,
         data: result,
