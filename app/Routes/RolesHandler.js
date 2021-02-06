@@ -62,7 +62,7 @@ module.exports = function(server) {
 
     server.route({
         method: 'POST',
-        path: '/creat_roles',
+        path: '/create_roles',
         options:{
 
             handler: async function (request, h) {
@@ -79,7 +79,44 @@ module.exports = function(server) {
                             roleName: Joi.string().required(),
                             idSubRole: Joi.number().required(),
                             RoleCode: Joi.string().required(),
-                            subRoleName: Joi.string().required()
+                            subRoleName: Joi.string().required(),
+                            status : Joi.number().required()
+                        }
+                    )
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
+            },
+            response: {
+                schema: common.responseCreateRoles,
+                failAction: 'log'
+            }
+        },
+
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/update_roles',
+        options:{
+            handler: async function (request, h) {
+                const res = await RolesHandler.updateRoles(request,h)
+                return res;
+            },
+            description: 'Get todo',
+            notes: 'Returns a todo item by the id passed in the path',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                payload :Joi.object({
+                    data:Joi.array().items(
+                        {
+                            idRole: Joi.number().required(),
+                            roleName: Joi.string().required(),
+                            idSubRole: Joi.number().required(),
+                            RoleCode: Joi.string().required(),
+                            subRoleName: Joi.string().required(),
+                            status: Joi.number().required()
                         }
                     )
                 }),

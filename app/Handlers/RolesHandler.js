@@ -5,6 +5,11 @@ const SubRoles = require('../models/subRoles')
 const {sequelize} = require('../CommonBase/DBConnection/MysqlConnection')
 const {response} = require('../CommonBase/RestApi/response')
 const {verifyCommon} = require('../CommonBase/Verify/VerifyJWT')
+const { Sequelize } = require('sequelize');
+const { Op } = Sequelize;
+
+
+
 getRoles = async function(request,h)
 {
     console.log("request.query.id = ",request.query.id)
@@ -54,7 +59,7 @@ getRoleDetail = async function(request,h){
         return resData;
     }
 
-    const res = await RoleDetailModel(sequelize).findAll({where: {idRole: request.query.idRole}})
+    const res = await RoleDetailModel(sequelize).findAll({where: {idRole: request.query.idRole,status: 1}})
 
     //let counter = await  RolesModel(sequelize).count();
 
@@ -112,6 +117,68 @@ createRoles = async function(request,h)
     resData = {
         error: 500,
         data: result,
+        messages: response(500)
+    }
+    return (resData);
+}
+
+updateRoles = async function(request,h)
+{
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
+    let recieveData = request.payload.data;
+    let resCreateRole = await RolesModel(sequelize).update({roleName: recieveData[0].roleName}, { individualHooks: true,where: {id: recieveData[0].idRole} })
+
+    let listStatus_1 = [];
+    let listStatus_0 = [];
+
+    request.payload.data.forEach(function (value) {
+        if(value.status === 1) {listStatus_1.push(value.idSubRole)}
+        if(value.status === 0) { listStatus_0.push(value.idSubRole)}
+    })
+
+    let result = await RoleDetailModel(sequelize).update(
+            { status: 1 }, /* set attributes' value */
+            { where: { idSubRole: listStatus_1 }} /* where criteria */
+    ).then(v => {
+        return "OK"
+    }).catch((err) => {
+        console.log('failed to create data');
+        console.log(err);
+        return err.toString();
+    });
+
+    let result0 = await RoleDetailModel(sequelize).update(
+        { status: 0 }, /* set attributes' value */
+        { where: { idSubRole: listStatus_0 }} /* where criteria */
+    ).then(v => {
+        return "OK";
+    }).catch((err) => {
+        console.log('failed to create data');
+        console.log(err);
+        return err.toString();
+    });
+
+    let resData = {
+        error: 200,
+        data: result0,
+        messages: response(200)
+    }
+    if (result0==="OK")
+    {
+        return (resData);
+    }
+    resData = {
+        error: 500,
+        data: result0,
         messages: response(500)
     }
     return (resData);
@@ -236,6 +303,7 @@ gettingAllRoles = async function(request,h){
     }
     return resData;
 }
+
 exports.RolesHandler = {
     getRoles,
     createRoles,
@@ -243,5 +311,6 @@ exports.RolesHandler = {
     gettingAllSubRoles,
     gettingAllRoles,
     gettingRolesPage,
-    getRoleDetail
+    getRoleDetail,
+    updateRoles
 }

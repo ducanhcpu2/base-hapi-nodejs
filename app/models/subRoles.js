@@ -24,20 +24,37 @@ module.exports = sequelize => {
       field: "subRoleName"
     },
     RoleCode: {
-      type: DataTypes.STRING(15),
+      type: DataTypes.STRING(50),
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "RoleCode"
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "createdAt"
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "updatedAt"
     }
   };
   const options = {
     tableName: "subRoles",
     comment: "",
-    indexes: [],
-    timestamps: false
+    indexes: []
   };
   const SubRolesModel = sequelize.define("subRoles_model", attributes, options);
   return SubRolesModel;

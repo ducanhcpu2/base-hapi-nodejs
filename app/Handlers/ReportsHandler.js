@@ -21,24 +21,24 @@ gettingAllReports = async function(request,h){
     }
 
     //check role
-    const decoded = jwt.verify(accessToken, SECRET);
-    let checker = false;
-    decoded.role.forEach(function (value) {
-       if(value.RoleCode === "VIEW_ALL_REPORTS"){
-           checker = true;
-           return;
-       }
-       console.log("value = ",value)
-   })
-
-    if(!checker) {
-        const resData = {
-            error: 4,
-            data: null,
-            messages: response(4)
-        }
-        return resData;
-    }
+   //  const decoded = jwt.verify(accessToken, SECRET);
+   //  let checker = false;
+   //  decoded.role.forEach(function (value) {
+   //     if(value.RoleCode === "VIEW_ALL_REPORTS"){
+   //         checker = true;
+   //         return;
+   //     }
+   //     console.log("value = ",value)
+   // })
+   //
+   //  if(!checker) {
+   //      const resData = {
+   //          error: 4,
+   //          data: null,
+   //          messages: response(4)
+   //      }
+   //      return resData;
+   //  }
 
     let pageOffset = request.query.pageOffset;
     let pageSize = request.query.pageSize;

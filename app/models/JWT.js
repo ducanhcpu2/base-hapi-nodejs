@@ -14,20 +14,28 @@ module.exports = sequelize => {
       field: "id"
     },
     token: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.TEXT,
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
       autoIncrement: false,
       comment: null,
       field: "token"
+    },
+    idUser: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "idUser"
     }
   };
   const options = {
     tableName: "JWT",
     comment: "",
-    indexes: [],
-      timestamps:false
+    indexes: []
   };
   const JwtModel = sequelize.define("JWT_model", attributes, options);
   return JwtModel;

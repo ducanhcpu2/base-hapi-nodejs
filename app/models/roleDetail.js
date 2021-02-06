@@ -50,7 +50,7 @@ module.exports = sequelize => {
       }
     },
     RoleCode: {
-      type: DataTypes.STRING(15),
+      type: DataTypes.STRING(50),
       allowNull: true,
       defaultValue: null,
       primaryKey: false,
@@ -75,6 +75,15 @@ module.exports = sequelize => {
       autoIncrement: false,
       comment: null,
       field: "updatedAt"
+    },
+    status: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: null,
+      primaryKey: false,
+      autoIncrement: false,
+      comment: null,
+      field: "status",
     }
   };
   const options = {
@@ -84,7 +93,7 @@ module.exports = sequelize => {
       name: "roleDetail_roles_id_fk",
       unique: false,
       type: "BTREE",
-      fields: ["idRole"]
+      fields: ["idRole"],
     }, {
       name: "roleDetail_subRoles_id_fk",
       unique: false,

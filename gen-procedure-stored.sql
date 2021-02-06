@@ -97,4 +97,13 @@ begin
 
     end if;
 end;
+
+delimiter //
+alter table JWT
+    add createdAt timestamp null;
+
+alter table JWT
+    add updatedAt timestamp null;
+
+
 //
