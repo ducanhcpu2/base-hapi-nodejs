@@ -166,6 +166,30 @@ module.exports = function(server) {
     });
 
     server.route({
+        method: 'POST',
+        path: '/delete_role',
+        options:{
+            handler: async function (request, h) {
+                const res = await RolesHandler.deleteRole(request,h)
+                return res;
+            },
+            description: 'Get todo',
+            notes: 'Returns a todo item by the id passed in the path',
+            tags: ['api'], // ADD THIS TAG
+            validate: {
+                payload :Joi.object({
+                    idRole : Joi.number().required()
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
+            },
+
+        },
+
+    });
+
+    server.route({
         method: 'GET',
         path: '/getting_all_subRoles',
         options:{

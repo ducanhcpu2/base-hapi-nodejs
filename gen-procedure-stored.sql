@@ -107,3 +107,9 @@ alter table JWT
 
 
 //
+
+
+delimiter //
+alter table roleDetail
+    add status int null;
+//

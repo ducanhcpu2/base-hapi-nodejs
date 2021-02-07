@@ -303,7 +303,41 @@ gettingAllRoles = async function(request,h){
     }
     return resData;
 }
+deleteRole = async function(request,h){
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
 
+    const res = await sequelize
+        .query('CALL deleteRole(:id_role)', {replacements:{id_role: request.payload.idRole}})
+        .then(v=>{
+            let resData = {
+                error: 200,
+                data: v[0].result,
+                messages: response(200)
+            }
+            return resData;
+
+        }).catch(err =>{
+            let resData = {
+                error: 500,
+                data: err,
+                messages: response(500)
+            }
+            return resData;
+        });
+
+
+    return res;
+
+}
 exports.RolesHandler = {
     getRoles,
     createRoles,
@@ -312,5 +346,6 @@ exports.RolesHandler = {
     gettingAllRoles,
     gettingRolesPage,
     getRoleDetail,
-    updateRoles
+    updateRoles,
+    deleteRole
 }
