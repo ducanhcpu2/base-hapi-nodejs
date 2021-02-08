@@ -265,7 +265,7 @@ gettingRolesPage = async function(request,h){
         }
         return resData;
     }
-    const subRoles = await RolesModel(sequelize).findAll({offset: pageOffset,limit: pageSize,order:[]});
+    const subRoles = await RolesModel(sequelize).findAll({offset: pageOffset-1,limit: pageSize,order:[]});
     let counter = await  RolesModel(sequelize).count();
     let objResponse = {
         list: subRoles,
