@@ -6,3 +6,19 @@ thu vien gen models : https://www.npmjs.com/package/sequelize-auto-models
 hoac : https://www.npmjs.com/package/sequelize-automate
 
 lenh gen model : sudo sequelize-automate -t js -h localhost -d QLNV -u anhnd9 -p Vtp@ctbc123 -P 3306  -e mysql -o app/models
+
+
+chưa có kết quả (0 %)
+
+có kết quả khả quan (20%)
+
+tạm có 1 phần kết quả (40%)
+
+có 1 phần kết quả (60%)
+
+đã có kết quả (80%)
+
+hoàn thành. (100%)
+
+
+=> từ 1 loạt các thông số trên ,cuối quý/ năm đưa ra đánh giá tiến độ công việc => đưa ra phân tích biểu đồ để đánh gía hiệu quả làm việc

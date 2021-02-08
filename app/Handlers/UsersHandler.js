@@ -45,7 +45,13 @@ gettingAllUsers = async function(request,h){
         return resData;
     }
 
-    const users = await UsersModel(sequelize).findAll({offset: pageOffset-1,limit: pageSize,order:[],attributes: ['id', 'fullName','email','phoneNumber','createdAt','updatedAt']});
+    // const users = await UsersModel(sequelize).findAll({offset: pageOffset-1,limit: pageSize,order:[],attributes: ['id', 'fullName','gender','email','phoneNumber','createdAt','updatedAt']});
+    const users = await sequelize
+        .query('CALL getAllUsers(:offset,:limit_number)',{replacements: {offset : pageOffset, limit_number: pageSize }})
+        .then(v => {
+
+            return v;
+        })
     let counter = await UsersModel(sequelize).count();
 
     let objResponse = {
