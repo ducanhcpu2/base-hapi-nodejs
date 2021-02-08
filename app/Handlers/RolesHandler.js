@@ -318,10 +318,16 @@ deleteRole = async function(request,h){
     const res = await sequelize
         .query('CALL deleteRole(:id_role)', {replacements:{id_role: request.payload.idRole}})
         .then(v=>{
+            let result = "";
+            let code = 200 ;
+            if(v[0].result !== "OK"){
+                result = v[0].result;
+                code = 5;
+            }
             let resData = {
-                error: 200,
-                data: v[0].result,
-                messages: response(200)
+                error: code,
+                data: result,
+                messages: result
             }
             return resData;
 
