@@ -128,6 +128,36 @@ module.exports = function(server) {
     });
 
     server.route({
+        method: 'POST',
+        path: '/update_user',
+        options:{
+            handler: async function (request, h) {
+                const res = await UsersHandler.updateUser(request,h)
+                return res;
+            },
+            description: 'logout',
+            notes: 'Returns 200 if success else false and detail error in data',
+            tags: ['api'], // ADD THIS TAG
+            validate:{
+                payload :Joi.object({
+                    id: Joi.number().required()  ,
+                    email : Joi.string()
+                        .required()
+                        .description('email for login'),
+                    fullName:Joi.string().required(),
+                    phoneNumber: Joi.string().required(),
+                    gender: Joi.number().required(),
+                    password:Joi.string().required(),
+                    idRole: Joi.number().required()
+                }),
+                headers: Joi.object({
+                    'access_token': Joi.string().required()
+                }).unknown()
+            }
+        },
+    });
+
+    server.route({
         method: 'GET',
         path: '/search_user_by_option',
         options:{

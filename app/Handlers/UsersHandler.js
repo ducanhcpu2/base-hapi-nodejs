@@ -255,6 +255,38 @@ logout = async function(request,h){
 
 }
 
+updateUser = async function(request,h){
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
+
+    let result = await UsersModel(sequelize).update(request.payload,{ individualHooks: true,where: {id: request.payload.id} })
+        .then(v=>{
+            let resData = {
+                error: 200,
+                data: "sửa thành công",
+                messages: response(200)
+            }
+            return resData;
+        }).catch(err => {
+            let resData = {
+                error: 500,
+                data: err,
+                messages: response(500)
+            }
+            return resData;
+        })
+
+    return result;
+}
+
 
 
 exports.UsersHandler = {
@@ -263,5 +295,6 @@ exports.UsersHandler = {
     login,
     logout,
     gettingAllUsers,
-    gettingUserByOption
+    gettingUserByOption,
+    updateUser
 };

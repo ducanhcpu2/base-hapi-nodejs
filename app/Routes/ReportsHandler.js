@@ -160,11 +160,11 @@ module.exports = function(server) {
 
     server.route({
         method: 'POST',
-        path: '/update_report',
+        path: '/update_detail_report',
         options:{
 
             handler: async function (request, h) {
-                const res = await ReportsHandler.updateReport(request,h)
+                const res = await ReportsHandler.updateDetailReport(request,h)
                 return res;
             },
             description: 'Get todo',
@@ -172,11 +172,16 @@ module.exports = function(server) {
             tags: ['api'], // ADD THIS TAG
             validate: {
                 payload: Joi.object({
+                    id: Joi.number().required(),
                     title : Joi.string()
                         .required()
                         .description('Mô tả cho báo cáo'),
-                    idUser: Joi.number().required(),
-                    idReport: Joi.number().required()
+                    content: Joi.string().required(),
+                    hospital: Joi.string().allow('',null),
+                    doctor:Joi.string().allow('',null),
+                    location: Joi.string(),
+                    note: Joi.string().allow('',null),
+                    idReport: Joi.number().required(),
                 }),
                 headers: Joi.object({
                     'access_token': Joi.string().required()
@@ -188,5 +193,6 @@ module.exports = function(server) {
             }
         },
     });
+
 
 }

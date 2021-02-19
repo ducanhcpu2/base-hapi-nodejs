@@ -234,12 +234,47 @@ updateReport = async function(request,h) {
     return (resData);
 }
 
-
+updateDetailReport = async function(request,h) {
+    let accessToken = request.headers.access_token;
+    let resultVerify = await verifyCommon.verifyJWT(accessToken)
+    if(resultVerify) {
+        let resData = {
+            error: 2,
+            data: null,
+            messages: response(2)
+        }
+        return resData;
+    }
+    let id = request.payload.id;
+    let result = await ReportDetail(sequelize).update(request.payload, { individualHooks: true ,where: { id: id }},).then(() => {
+        return "OK";
+    }).catch((err) => {
+        console.log('failed to create data');
+        console.log(err);
+        return err.toString();
+    });
+    let resData = {
+        error: 200,
+        data: result,
+        messages: response(200)
+    }
+    if (result==="OK")
+    {
+        return (resData);
+    }
+    resData = {
+        error: 500,
+        data: result,
+        messages: response(500)
+    }
+    return (resData);
+}
 exports.ReportsHandler = {
     gettingAllReports,
     gettingDetailReport,
     createReport,
     createDetailReport,
     updateReport,
-    gettingReportById
+    gettingReportById,
+    updateDetailReport
 }
